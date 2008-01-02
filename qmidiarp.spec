@@ -11,6 +11,7 @@ License: 	GPL
 Group: 		Sound
 Source: 	%{name}-%{version}.tar.bz2
 
+Buildroot: 	%_tmppath/%name-%version-buildroot
 BuildRequires:	libalsa-devel qt3-devel
 
 %description
