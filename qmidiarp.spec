@@ -35,20 +35,6 @@ mkdir -p $RPM_BUILD_ROOT/%_bindir
 cp %name $RPM_BUILD_ROOT/%_bindir
 
 #menu
-(cd $RPM_BUILD_ROOT
-mkdir -p ./%{_menudir}
-cat > ./%{_menudir}/%{name} <<EOF
-?package(%{name}):\
-command="%{_bindir}/%name"\
-title="QMidiArp"\
-longtitle="MIDI Arpeggiator"\
-needs="x11"\
-icon="sound_section.png"\
-section="Multimedia/Sound"\
-xdg="true"
-EOF
-)
-
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -75,6 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc README *.qma
 %_bindir/%name
-%_menudir/%name
 %{_datadir}/applications/mandriva-%{name}.desktop
 
