@@ -1,6 +1,6 @@
 %define name 	qmidiarp
 %define version 0.0.2
-%define release %mkrel 6
+%define release %mkrel 7
 
 Summary: 	Simple, graphical MIDI arpeggiator
 Name: 		%name
