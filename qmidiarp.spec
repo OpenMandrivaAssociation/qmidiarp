@@ -1,69 +1,78 @@
-%define name 	qmidiarp
-%define version 0.0.2
-%define release %mkrel 7
+%define branch 1
+%{?_branch: %{expand: %%global branch 1}}
 
-Summary: 	Simple, graphical MIDI arpeggiator
-Name: 		%name
-Version: 	%version
-Release: 	%release
-Url: 		http://alsamodular.sourceforge.net/
-License: 	GPL
-Group: 		Sound
-Source: 	%{name}-%{version}.tar.bz2
+%if %branch
+%define cvs_snapshot cvs20101101
+%endif
 
-Buildroot: 	%_tmppath/%name-%version-buildroot
-BuildRequires:	libalsa-devel qt3-devel
+Name:           qmidiarp
+Summary:        Arpgeggiator, sequencer and LFO for ALSA
+Version:        0.0.3
+%if %branch
+Release: 		%mkrel -c %cvs_snapshot 1
+%else
+Release: 		%mkrel 1
+%endif
+%if %branch
+Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.%{cvs_snapshot}.tar.bz2
+%else
+Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.tar.bz2
+%endif
+URL:            http://alsamodular.sourceforge.net/
+License:        GPLv2
+Group:          Applications/Multimedia
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
+BuildRequires:  alsa-lib-devel qt4-devel jackit-devel
 
 %description
-QMidiArp can run several arpeggiators at the same time, both 
-monophonically and with chords. It is based on user definable patterns 
-where the indices 0..9 address the notes currently played on a keyboard.
-Several other tokens define tempo, note length, velocity,...
+Advanced arpgeggiator, step sequencer and MIDI LFO for the ALSA sequencer.
 
-%prep
+%prep 
 %setup -q
-perl -p -i -e "s/\-O2/$RPM_OPT_FLAGS/g" Makefile
-perl -pi -e 's/QT_BASE_DIR\)\/lib/QT_BASE_DIR\)\/%{_lib}/g' Makefile
-perl -pi -e 's/usr\/%{_lib}/usr\/%{_lib}/g' Makefile
 
-%build
+%if %mdkversion < 201000
+iconv -f=utf8 -t=latin1 man/de/%{name}.1 -o man/de/%{name}.1
+iconv -f=utf8 -t=latin1 man/fr/%{name}.1 -o man/fr/%{name}.1
+%endif
+
+%build 
+%configure 
 %make
-
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%_bindir
-cp %name $RPM_BUILD_ROOT/%_bindir
+rm -rf %{buildroot}
+%makeinstall_std
+
+%{__mkdir} -p %{buildroot}%{_datadir}/pixmaps
+%{__install} -m 0644 src/pixmaps/qmidiarp2.xpm %{buildroot}%{_datadir}/pixmaps
 
 #menu
+
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=QMidiArp
-Comment=MIDI Arpeggiator
+Comment=Arpeggiator Sequencer LFO
 Exec=%{_bindir}/%{name}
-Icon=sound_section
+Icon=qmidiarp2
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;AudioVideo;Midi;
+Categories=X-MandrivaLinux-Multimedia-Sound;AudioVideo;
 Encoding=UTF-8
 EOF
 
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%update_menus
-%endif
-
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc README *.qma
-%_bindir/%name
+%doc README NEWS COPYING AUTHORS 
+%{_bindir}/%{name}
+%{_datadir}/%{name}
+%{_datadir}/pixmaps/qmidiarp2.xpm
+%docdir %{_mandir}/man1/*
+%{_mandir}/man1/*
+%{_mandir}/de/man1/*
+%{_mandir}/fr/man1/*
 %{_datadir}/applications/mandriva-%{name}.desktop
 
+%changelog
