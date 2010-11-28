@@ -2,16 +2,16 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define cvs_snapshot cvs20101101
+%define cvs_snapshot cvs20101128
 %endif
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for ALSA
 Version:        0.0.3
 %if %branch
-Release: 		%mkrel -c %cvs_snapshot 1
+Release:        %mkrel -c %cvs_snapshot 1
 %else
-Release: 		%mkrel 1
+Release:        %mkrel 1
 %endif
 %if %branch
 Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.%{cvs_snapshot}.tar.bz2
