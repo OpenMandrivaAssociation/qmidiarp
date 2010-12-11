@@ -2,7 +2,7 @@
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define cvs_snapshot cvs20101128
+%define cvs_snapshot cvs20101211
 %endif
 
 Name:           qmidiarp
