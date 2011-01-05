@@ -1,24 +1,24 @@
-%define branch 1
+%define branch 0
 %{?_branch: %{expand: %%global branch 1}}
 
 %if %branch
-%define cvs_snapshot cvs20101211
+%define git_snapshot git20101211
 %endif
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for ALSA
-Version:        0.0.3
+Version:        0.3.9
 %if %branch
-Release:        %mkrel -c %cvs_snapshot 1
+Release:        %mkrel -c %git_snapshot 1
 %else
 Release:        %mkrel 1
 %endif
 %if %branch
-Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.%{cvs_snapshot}.tar.bz2
+Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
 %else
-Source:         http://dl.sf.net/alsamodular/%{name}-%{version}.tar.bz2
+Source:         http://dl.sf.net/%{name}/%{version}/%{name}-%{version}.tar.bz2
 %endif
-URL:            http://alsamodular.sourceforge.net/
+URL:            http://qmidiarp.sourceforge.net/
 License:        GPLv2
 Group:          Sound
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
