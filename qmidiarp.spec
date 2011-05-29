@@ -7,7 +7,7 @@
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for ALSA
-Version:        0.3.9
+Version:        0.4.1
 %if %branch
 Release:        %mkrel -c %git_snapshot 1
 %else
@@ -42,23 +42,8 @@ iconv -f=utf8 -t=latin1 man/fr/%{name}.1 -o man/fr/%{name}.1
 rm -rf %{buildroot}
 %makeinstall_std
 
-%{__mkdir} -p %{buildroot}%{_datadir}/pixmaps
-%{__install} -m 0644 src/pixmaps/qmidiarp2.xpm %{buildroot}%{_datadir}/pixmaps
-
-#menu
-
-mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=QMidiArp
-Comment=Arpeggiator Sequencer LFO
-Exec=%{_bindir}/%{name}
-Icon=qmidiarp2
-Terminal=false
-Type=Application
-Categories=X-MandrivaLinux-Multimedia-Sound;AudioVideo;
-Encoding=UTF-8
-EOF
+desktop-file-install --add-category="X-MandrivaLinux-Multimedia-Sound;" \
+                     --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
 %clean
 rm -rf %{buildroot}
@@ -68,11 +53,11 @@ rm -rf %{buildroot}
 %doc README NEWS COPYING AUTHORS 
 %{_bindir}/%{name}
 %{_datadir}/%{name}
-%{_datadir}/pixmaps/qmidiarp2.xpm
+%{_datadir}/icons/hicolor/scalable/apps/qmidiarp.svg
 %docdir %{_mandir}/man1/*
 %{_mandir}/man1/*
 %{_mandir}/de/man1/*
 %{_mandir}/fr/man1/*
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
 
 %changelog
