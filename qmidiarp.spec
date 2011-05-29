@@ -23,6 +23,7 @@ License:        GPLv2
 Group:          Sound
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
 BuildRequires:  alsa-lib-devel qt4-devel jackit-devel
+BuildRequires:  desktop-file-utils
 
 %description
 Advanced arpgeggiator, step sequencer and MIDI LFO for the ALSA sequencer.
