@@ -11,13 +11,14 @@ Version:        0.4.1
 %if %branch
 Release:        %mkrel -c %git_snapshot 1
 %else
-Release:        %mkrel 1
+Release:        %mkrel 2
 %endif
 %if %branch
 Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
 %else
 Source:         http://dl.sf.net/%{name}/%{version}/%{name}-%{version}.tar.bz2
 %endif
+Patch0:         http://dl.sf.net/%{name}/%{version}/%{name}-%{version}-fixes.patch
 URL:            http://qmidiarp.sourceforge.net/
 License:        GPLv2
 Group:          Sound
@@ -30,6 +31,7 @@ Advanced arpgeggiator, step sequencer and MIDI LFO for the ALSA sequencer.
 
 %prep 
 %setup -q
+%patch0 -p1
 
 %if %mdkversion < 201000
 iconv -f=utf8 -t=latin1 man/de/%{name}.1 -o man/de/%{name}.1
