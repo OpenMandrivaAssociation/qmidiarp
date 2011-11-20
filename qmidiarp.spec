@@ -7,7 +7,7 @@
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for ALSA
-Version:        0.4.2
+Version:        0.4.3
 %if %branch
 Release:        %mkrel -c %git_snapshot 1
 %else
