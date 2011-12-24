@@ -11,7 +11,7 @@ Version:        0.4.4
 %if %branch
 Release:        %git_snapshot
 %else
-Release:        1
+Release:        2
 %endif
 %if %branch
 Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
@@ -26,7 +26,7 @@ BuildRequires:  alsa-lib-devel qt4-devel jackit-devel
 BuildRequires:  desktop-file-utils
 
 %description
-Advanced arpgeggiator, step sequencer and MIDI LFO for the ALSA sequencer.
+Advanced arpgeggiator, step sequencer and MIDI LFO for JACK and ALSA.
 
 %prep
 %setup -q
