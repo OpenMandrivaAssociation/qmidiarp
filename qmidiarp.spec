@@ -6,19 +6,18 @@
 %endif
 
 Name:           qmidiarp
-Summary:        Arpgeggiator, sequencer and LFO for ALSA
-Version:        0.4.3
+Summary:        Arpgeggiator, sequencer and LFO for JACK and ALSA
+Version:        0.4.4
 %if %branch
-Release:        %mkrel -c %git_snapshot 1
+Release:        %git_snapshot
 %else
-Release:        2
+Release:        1
 %endif
 %if %branch
 Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
 %else
 Source:         http://dl.sf.net/%{name}/%{version}/%{name}-%{version}.tar.bz2
 %endif
-Patch0:         qmidiarp-0.4.3-fix-transport.patch
 URL:            http://qmidiarp.sourceforge.net/
 License:        GPLv2
 Group:          Sound
@@ -31,7 +30,6 @@ Advanced arpgeggiator, step sequencer and MIDI LFO for the ALSA sequencer.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %configure
@@ -43,10 +41,12 @@ rm -rf %{buildroot}
 desktop-file-install --add-category="X-MandrivaLinux-Multimedia-Sound;" \
                      --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
 
+%find_lang %{name} --with-man
+
 %clean
 rm -rf %{buildroot}
 
-%files
+%files -f %{name}.lang
 %defattr(-,root,root)
 %doc README NEWS COPYING AUTHORS
 %{_bindir}/%{name}
@@ -54,8 +54,6 @@ rm -rf %{buildroot}
 %{_datadir}/icons/hicolor/scalable/apps/qmidiarp.svg
 %docdir %{_mandir}/man1/*
 %{_mandir}/man1/*
-%{_mandir}/de/man1/*
-%{_mandir}/fr/man1/*
 %{_datadir}/applications/%{name}.desktop
 
 %changelog
