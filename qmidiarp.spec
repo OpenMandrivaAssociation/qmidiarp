@@ -7,11 +7,11 @@
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for JACK and ALSA
-Version:        0.4.4
+Version:        0.4.5
 %if %branch
 Release:        %git_snapshot
 %else
-Release:        2
+Release:        1
 %endif
 %if %branch
 Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
