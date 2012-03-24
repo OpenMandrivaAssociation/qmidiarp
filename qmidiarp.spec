@@ -7,7 +7,7 @@
 
 Name:           qmidiarp
 Summary:        Arpgeggiator, sequencer and LFO for JACK and ALSA
-Version:        0.4.5
+Version:        0.5.0
 %if %branch
 Release:        %git_snapshot
 %else
@@ -22,7 +22,7 @@ URL:            http://qmidiarp.sourceforge.net/
 License:        GPLv2
 Group:          Sound
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:  alsa-lib-devel qt4-devel jackit-devel
+BuildRequires:  libalsa-devel qt4-devel jackit-devel
 BuildRequires:  desktop-file-utils
 
 %description
