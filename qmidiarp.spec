@@ -11,7 +11,7 @@ Version:        0.5.1
 %if %branch
 Release:        %git_snapshot
 %else
-Release:        1
+Release:        2
 %endif
 %if %branch
 Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.bz2
