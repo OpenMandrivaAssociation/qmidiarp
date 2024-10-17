@@ -18,7 +18,7 @@ Source:         http://dl.sf.net/%{name}/%{name}-%{version}.%{git_snapshot}.tar.
 %else
 Source:         http://dl.sf.net/%{name}/%{version}/%{name}-%{version}.tar.bz2
 %endif
-URL:            http://qmidiarp.sourceforge.net/
+URL:            https://qmidiarp.sourceforge.net/
 License:        GPLv2
 Group:          Sound
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
