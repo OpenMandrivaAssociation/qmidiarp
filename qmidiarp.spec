@@ -10,6 +10,7 @@ Url:	https://qmidiarp.sourceforge.net/
 Source0:	https://sourceforge.net/projects/qmidiarp/files/qmidiarp/%{version}/%{name}-%{version}.tar.bz2
 BuildRequires:		cmake >= 3.10
 BuildRequires:		cmake(Qt5LinguistTools)
+BuildRequires:		qmake5
 BuildRequires:		pkgconfig(alsa)
 BuildRequires:		pkgconfig(cairo)
 BuildRequires:		pkgconfig(gl)
