@@ -2,31 +2,33 @@
 
 Summary:	Arpgeggiator, sequencer and LFO for JACK and ALSA
 Name:	qmidiarp
-Version:	0.7.2
+Version:	0.7.4
 Release:	1
 License:	GPLv2+
 Group:	Sound
 Url:	https://qmidiarp.sourceforge.net/
 Source0:	https://sourceforge.net/projects/qmidiarp/files/qmidiarp/%{version}/%{name}-%{version}.tar.bz2
-BuildRequires:	cmake >= 3.10
-BuildRequires:	make
-BuildRequires:	nsm
-BuildRequires:	qmake-qt6
-BuildRequires:	qt6-qttools-linguist-tools
-BuildRequires:	pkgconfig(alsa)
-BuildRequires:	pkgconfig(cairo)
-BuildRequires:	pkgconfig(gl)
-BuildRequires:	pkgconfig(glu)
-BuildRequires:	pkgconfig(jack)
-BuildRequires:	pkgconfig(liblo)
-BuildRequires:	pkgconfig(lv2)
-BuildRequires:	pkgconfig(pango)
-BuildRequires:	pkgconfig(pangocairo)
-BuildRequires:	pkgconfig(Qt6Core)
-BuildRequires:	pkgconfig(Qt6Gui)
-BuildRequires:	pkgconfig(Qt6Widgets)
-BuildRequires:	pkgconfig(Qt6Xml)
-BuildRequires:	pkgconfig(vulkan)
+BuildRequires:		cmake >= 3.10
+BuildRequires:		glslc
+BuildRequires:		make
+BuildRequires:		nsm
+BuildRequires:		qmake-qt6
+BuildRequires:		qt6-qttools-linguist-tools
+BuildRequires:		pkgconfig(alsa)
+BuildRequires:		pkgconfig(cairo)
+BuildRequires:		pkgconfig(gl)
+BuildRequires:		pkgconfig(glu)
+BuildRequires:		pkgconfig(jack)
+BuildRequires:		pkgconfig(liblo)
+BuildRequires:		pkgconfig(lv2)
+BuildRequires:		pkgconfig(pango)
+BuildRequires:		pkgconfig(pangocairo)
+BuildRequires:		pkgconfig(Qt6Core)
+BuildRequires:		pkgconfig(Qt6DBus)
+BuildRequires:		pkgconfig(Qt6Gui)
+BuildRequires:		pkgconfig(Qt6Widgets)
+BuildRequires:		pkgconfig(Qt6Xml)
+BuildRequires:		pkgconfig(vulkan)
 
 %description
 Advanced arpgeggiator, step sequencer and MIDI LFO for JACK and ALSA.
@@ -53,7 +55,8 @@ sed -i -e "s,/lib/lv2,/%{_lib}/lv2,g" CMakeLists.txt
 
 %build
 %cmake	-DCONFIG_LV2_UI_RTK=1 \
-		-DCONFIG_TRANSLATIONS=1
+					-DCONFIG_NSM=1 \
+					-DCONFIG_TRANSLATIONS=1
 
 %make_build
 
